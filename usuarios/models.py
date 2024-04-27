@@ -1,5 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash
 from app import db
@@ -16,3 +14,5 @@ class Usuario(db.Model):
     mascotas = relationship('Mascota', backref='usuario', lazy=True)
     def set_password(self, password):
         self.password = generate_password_hash(password)
+
+

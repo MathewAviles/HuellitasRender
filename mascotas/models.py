@@ -1,7 +1,5 @@
 from app import db,app
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
 
 class Mascota(db.Model):
      __tablename__ = 'mascotas'
@@ -13,6 +11,3 @@ class Mascota(db.Model):
      # Clave foránea que apunta al id del usuario
      usuario_id = db.Column(db.Integer, ForeignKey('usuarios.id'), nullable=False)
 
-     # Crear las tablas en la base de datos
-with app.app_context():
-     db.create_all()

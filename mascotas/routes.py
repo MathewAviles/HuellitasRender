@@ -1,5 +1,5 @@
-from flask import render_template, redirect, request, url_for
-from database import app, db
+from flask import render_template
+from database import app
 from mascotas.models import Mascota
 
 
