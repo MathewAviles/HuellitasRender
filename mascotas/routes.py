@@ -1,13 +1,8 @@
-from flask import Blueprint, render_template
+from flask import render_template, redirect, request, url_for
+from database import app, db
+from mascotas.models import Mascota
 
-mascotas_bp = Blueprint('mascotas', __name__, template_folder='templates', static_folder='static')
 
-@mascotas_bp.route('/mascotas')
+@app.route('/mascotas')
 def mascotas_index():
-    return render_template('indexm.html')
-
-@mascotas_bp.route('/registromascotas')
-def mascotas_add():
-    return render_template('add.html')
-
-# Agrega más rutas de mascotas según tus necesidades
+    return render_template('mascotas/indexm.html')

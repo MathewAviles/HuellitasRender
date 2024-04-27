@@ -1,13 +1,31 @@
-from flask import Blueprint, render_template
+from flask import render_template, redirect, request, url_for
+from database import app, db
+from usuarios.models import Usuario
 
-usuarios_bp = Blueprint('usuarios', __name__, template_folder='templates')
+@app.route('/')
+def home():
+    return render_template('home.html')
 
-@usuarios_bp.route('/usuarios')
+@app.route('/usuarios')
 def usuarios_index():
-    return render_template('indexu.html')
+    return render_template('usuarios/indexu.html')
 
-@usuarios_bp.route('/registrousuario')
-def usuarios_register():
-    return render_template('register.html')
+@app.route('/crear_usuario', methods=['GET', 'POST'])
+def crear_usuario():
+    if request.method == 'POST':
+        # Obtener datos del formulario
+        nombre = request.form['nombre']
+        email = request.form['email']
+        password = request.form['password']
 
-# Agrega más rutas de usuarios según tus necesidades
+        # Crear un nuevo usuario
+        nuevo_usuario = Usuario(nombre=nombre, email=email)
+        nuevo_usuario.set_password(password)
+        db.session.add(nuevo_usuario)
+        db.session.commit()
+
+        # Redireccionar a alguna página de éxito o a la página de inicio
+        return redirect(url_for('home'))
+    
+    # Si el método es GET, mostrar el formulario de creación de usuarios
+    return render_template('usuarios/crear_usuario.html')
