@@ -9,6 +9,7 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
+    rol = db.Column(db.String(100), nullable=False, default='usuario')
 
     # Relación de uno a muchos con la tabla Mascota
     mascotas = relationship('Mascota', backref='usuario', lazy=True)
