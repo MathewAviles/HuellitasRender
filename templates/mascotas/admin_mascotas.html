@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Página principal {% endblock %}
+
+{% block content %}
+<div class="container">
+  
+  <div class="row justify-content-center">
+    
+    <div class="col-md-8">
+      <h1 class="mt-4">Listado de Mascotas</h1>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Descargar Imágenes</th>
+            <!-- Agrega aquí más columnas para los demás campos de la mascota -->
+          </tr>
+        </thead>
+        <tbody>
+          {% for mascota in mascotas %}
+            <tr>
+              <td>{{ mascota.nombre }}</td>
+              <td>{{ mascota.edad }}</td>
+              <td>{{ mascota.raza }}</td>
+              <!-- Agrega aquí más celdas para los demás campos de la mascota -->
+              <td>
+                  <a href="{{ url_for('descargar_imagenes', nombre_mascota=mascota.nombre) }}" >Descargar Imágenes</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

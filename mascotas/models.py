@@ -1,5 +1,6 @@
 from app import db,app
 from sqlalchemy import ForeignKey
+from sqlalchemy.dialects.postgresql import BYTEA
 
 class Mascota(db.Model):
      __tablename__ = 'mascotas'
@@ -24,4 +25,11 @@ class Sexo(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
+
+class ImagenMascota(db.Model):
+    __tablename__ = 'imagenes_mascotas'
+
+    id = db.Column(db.Integer, primary_key=True)
+    nombre_mascota = db.Column(db.String(100), nullable=False)
+    imagen = db.Column(BYTEA, nullable=False)
 

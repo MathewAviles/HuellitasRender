@@ -10,7 +10,7 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <title>
     {% block title %}
-    
+
     {% endblock %}
   </title>
 </head>
@@ -30,12 +30,20 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <!-- Barra de búsqueda centrada -->
         <form class="d-flex ms-auto" action="/buscar" method="GET" style="max-width: 600px;">
-          <input class="form-control me-2 flex-grow-1" type="search" placeholder="Buscar" aria-label="Buscar"
-              name="q">
+          <input class="form-control me-2 flex-grow-1" type="search" placeholder="Buscar" aria-label="Buscar" name="q">
           <button class="btn btn-outline-light" type="submit">Buscar</button>
-      </form>
+        </form>
         <ul class="navbar-nav ms-auto"> <!-- Cambiado mx-auto por ms-auto -->
           {% if 'user_id' in session %}
+          {% if session['rol'] == 'admin' %}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin_mascotas">Administrar Mascotas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Cerrar sesión</a>
+          </li>
+          {% else %}
+
           <li class="nav-item">
             <a class="nav-link" href="/">Inicio</a>
           </li>
@@ -43,8 +51,15 @@
             <a class="nav-link" href="/crear_mascota">Registrar Mascota</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/reconocimiento">Registro Reconocimiento</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/reconocimiento_mascotas">Reconocimiento Mascotas</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/logout">Cerrar sesión</a>
           </li>
+          {% endif %}
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="/">Inicio</a>
@@ -54,9 +69,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/crear_usuario">Registro</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/reconocimiento">Reconocimiento</a>
           </li>
           {% endif %}
         </ul>

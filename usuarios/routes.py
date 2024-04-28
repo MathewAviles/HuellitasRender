@@ -47,6 +47,7 @@ def login():
         if usuario and check_password_hash(usuario.password, password):
             # Iniciar sesión
             session['user_id'] = usuario.id
+            session['rol'] = usuario.rol
             flash('¡Gracias por iniciar sesión.', 'success')
             return redirect(url_for('home'))
 
@@ -56,6 +57,8 @@ def login():
 
     # Si el método es GET, mostrar el formulario de inicio de sesión
     return render_template('usuarios/login.html')
+
+
 
 
 @app.route('/logout')
