@@ -118,6 +118,12 @@
                 }
             }
         }
+
+        // Cambiar entre la cámara frontal y la cámara trasera
+        async function switchCamera() {
+            webcam.facingMode = (webcam.facingMode == 'user') ? 'environment' : 'user';
+            await webcam.setup(); // Reinicializar la webcam con el nuevo modo
+        }
     </script>
 </body>
 {% endblock %}
