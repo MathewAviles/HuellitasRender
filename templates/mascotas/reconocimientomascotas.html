@@ -116,8 +116,14 @@
 
         // Cambiar entre la cámara frontal y la cámara trasera
         async function switchCamera() {
+            // Detener todos los tracks del stream de la cámara
+            webcam.stream.getTracks().forEach(track => track.stop());
+
+            // Cambiar el modo de la cámara
             webcam.facingMode = (webcam.facingMode == 'user') ? 'environment' : 'user';
-            await webcam.setup(); // Reinicializar la webcam con el nuevo modo
+
+            // Reiniciar la cámara con el nuevo modo
+            await webcam.setup();
         }
     </script>
 </body>
