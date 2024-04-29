@@ -44,8 +44,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div>Teachable Machine Image Model</div>
-                <button type="button" onclick="init()" class="btn btn-primary mt-4">Start</button>
+                <div>Módulo de reconocimiento de mascotas</div>
+                <button type="button" onclick="init()" class="btn btn-primary mt-4">Iniciar</button>
                 <button type="button" onclick="switchCamera()" class="btn btn-secondary mt-4">Cambiar Camera</button>
                 <div id="webcam-container"></div>
                 <div id="label-container"></div>
@@ -79,7 +79,7 @@
 
             // Convenience function to setup a webcam
             const flip = true; // whether to flip the webcam
-            webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+            webcam = new tmImage.Webcam(400, 400, flip); // width, height, flip
             await webcam.setup(); // request access to the webcam
             await webcam.play();
             window.requestAnimationFrame(loop);
