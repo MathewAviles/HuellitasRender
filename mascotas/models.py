@@ -14,6 +14,9 @@ class Mascota(db.Model):
      fecha_desaparicion = db.Column(db.Date, nullable=False)
      lugar_desaparicion = db.Column(db.String(200), nullable=False)
      contacto = db.Column(db.String(20), nullable=False)
+     imagen1 = db.Column(db.LargeBinary, nullable=False)
+     imagen2 = db.Column(db.LargeBinary, nullable=True)
+     imagen3 = db.Column(db.LargeBinary, nullable=True)
 
      # Clave foránea que apunta al id del usuario
      usuario_id = db.Column(db.Integer, ForeignKey('usuarios.id'), nullable=False)

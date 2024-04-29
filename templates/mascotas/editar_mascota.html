@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} Página Editar Mascota {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Editar Mascota</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ mascota.nombre }}">
+        </div>
+        <div class="mb-3">
+            <label for="edad" class="form-label">Edad:</label>
+            <input type="text" id="edad" name="edad" class="form-control" value="{{ mascota.edad }}">
+        </div>
+        <div class="mb-3">
+            <label for="raza" class="form-label">Raza:</label>
+            <input type="text" id="raza" name="raza" class="form-control" value="{{ mascota.raza }}">
+        </div>
+        <div class="mb-3">
+            <label for="sexo_id" class="form-label">Sexo:</label>
+            <select id="sexo_id" name="sexo_id" class="form-select">
+                {% for sexo in sexos %}
+                    <option value="{{ sexo.id }}" {% if sexo.id == mascota.sexo_id %} selected {% endif %}>{{ sexo.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" class="form-control">{{ mascota.descripcion }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="fecha_desaparicion" class="form-label">Fecha de Desaparición:</label>
+            <input type="date" id="fecha_desaparicion" name="fecha_desaparicion" class="form-control" value="{{ mascota.fecha_desaparicion }}">
+        </div>
+        <div class="mb-3">
+            <label for="lugar_desaparicion" class="form-label">Lugar de Desaparición:</label>
+            <input type="text" id="lugar_desaparicion" name="lugar_desaparicion" class="form-control" value="{{ mascota.lugar_desaparicion }}">
+        </div>
+        <div class="mb-3">
+            <label for="contacto" class="form-label">Contacto:</label>
+            <input type="text" id="contacto" name="contacto" class="form-control" value="{{ mascota.contacto }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+</div>
+{% endblock %}

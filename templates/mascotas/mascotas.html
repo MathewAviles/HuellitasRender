@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %} Página Editar Mascota {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Listado de Mascotas</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Raza</th>
+                    <th>Sexo</th>
+                    <th>Descripción</th>
+                    <th>Fecha de Desaparición</th>
+                    <th>Lugar de Desaparición</th>
+                    <th>Contacto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mascota in mascotas %}
+                <tr>
+                    <td>{{ mascota.nombre }}</td>
+                    <td>{{ mascota.edad }}</td>
+                    <td>{{ mascota.raza }}</td>
+                    <td>{{ mascota.sexo.nombre }}</td>
+                    <td>{{ mascota.descripcion }}</td>
+                    <td>{{ mascota.fecha_desaparicion }}</td>
+                    <td>{{ mascota.lugar_desaparicion }}</td>
+                    <td>{{ mascota.contacto }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_mascota', id=mascota.id) }}" class="btn btn-primary">Editar</a>
+                        <form method="POST" action="{{ url_for('eliminar_mascota', id=mascota.id) }}" class="d-inline">
+                            <input type="submit" value="Eliminar" class="btn btn-danger">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

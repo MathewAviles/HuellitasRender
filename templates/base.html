@@ -33,45 +33,51 @@
           <input class="form-control me-2 flex-grow-1" type="search" placeholder="Buscar" aria-label="Buscar" name="q">
           <button class="btn btn-outline-light" type="submit">Buscar</button>
         </form>
-        <ul class="navbar-nav ms-auto"> <!-- Cambiado mx-auto por ms-auto -->
-          {% if 'user_id' in session %}
-          {% if session['rol'] == 'admin' %}
-          <li class="nav-item">
-            <a class="nav-link" href="/admin_mascotas">Administrar Mascotas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">Cerrar sesión</a>
-          </li>
-          {% else %}
+        <!-- Dentro del navbar -->
+<ul class="navbar-nav ms-auto">
+  <!-- Elemento de menú "Inicio" -->
+  <li class="nav-item">
+      <a class="nav-link" href="/">Inicio</a>
+  </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="/">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/crear_mascota">Registrar Mascota</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/reconocimiento">Registro Reconocimiento</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/reconocimiento_mascotas">Reconocimiento Mascotas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">Cerrar sesión</a>
-          </li>
-          {% endif %}
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="/">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/crear_usuario">Registro</a>
-          </li>
-          {% endif %}
-        </ul>
+  <!-- Elemento de menú "Mascotas" y su submenú -->
+  {% if 'user_id' in session %}
+  <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="mascotasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mascotas</a>
+      <ul class="dropdown-menu" aria-labelledby="mascotasDropdown">
+        
+          <li><a class="dropdown-item" href="/mascotas">Mi Mascota</a></li>
+          <li><a class="dropdown-item" href="/crear_mascota">Registrar Mascota</a></li>
+          <li><a class="dropdown-item" href="/reconocimiento">Registrar Reconocimiento</a></li>
+          <li><a class="dropdown-item" href="/reconocimiento_mascotas">Reconocimiento Mascotas 📷</a></li>
+        
+          
+      </ul>
+  </li>
+  {% endif %}
+
+  <!-- Elementos de menú adicionales -->
+  {% if 'user_id' in session %}
+  <!-- Otras opciones para usuarios autenticados -->
+  {% if session['rol'] == 'admin' %}
+  <li class="nav-item">
+      <a class="nav-link" href="/admin_mascotas">Administrar Mascotas</a>
+  </li>
+  {% endif %}
+  <li class="nav-item">
+      <a class="nav-link" href="/logout">Cerrar sesión</a>
+  </li>
+  {% else %}
+  <!-- Opciones para usuarios no autenticados -->
+  <li class="nav-item">
+      <a class="nav-link" href="/login">Login</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/crear_usuario">Registro</a>
+  </li>
+  {% endif %}
+</ul>
+
       </div>
     </div>
   </nav>

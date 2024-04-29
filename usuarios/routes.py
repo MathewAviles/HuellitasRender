@@ -3,9 +3,7 @@ from database import app, db
 from werkzeug.security import check_password_hash
 from usuarios.models import Usuario
 
-@app.route('/')
-def home():
-    return render_template('home.html')
+
 
 @app.route('/usuarios')
 def usuarios_index():
